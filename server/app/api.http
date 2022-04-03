@@ -1,0 +1,55 @@
+@cartId=""
+
+# Get product list
+GET http://localhost:8080/api/products HTTP/1.1
+content-type: application/json
+
+###
+
+# Get cart contents
+GET http://localhost:8080/api/carts/{{cartId}}
+content-type: application/json
+
+###
+
+# Add item to cart
+POST http://localhost:8080/api/carts/items HTTP/1.1
+content-type: application/json
+
+{
+    "productId": "6d7272dd-d49b-4870-a9e7-3763782755ed",
+    "quantity": 3
+}
+
+###
+
+# Update item in specific cart
+POST http://localhost:8080/api/carts/{{cartId}}/items HTTP/1.1
+content-type: application/json
+
+{
+    "productId": "7b470d7f-2be8-482c-85c5-b4391907719a",
+    "quantity": 110
+}
+
+###
+
+## remove item from cart
+DELETE  http://localhost:8080/api/carts/{{cartId}}/items/6d7272dd-d49b-4870-a9e7-3763782755ed HTTP/1.1
+content-type: application/json
+
+###
+
+# set cart currency
+POST http://localhost:8080/api/carts/{{cartId}}/currency HTTP/1.1
+content-type: application/json
+
+{
+    "currency": "AUD" 
+}
+
+###
+
+# checkout
+POST http://localhost:8080/api/carts/{{cartId}}/checkout HTTP/1.1
+content-type: application/json
